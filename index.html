@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飲みゲー</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #startPage {
+            display: block;
+        }
+        #gamePage {
+            display: none;
+        }
+        #character {
+            width: 200px;
+            margin-top: 50px;
+        }
+        .bubble {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: yellow;
+            display: none;
+        }
+        #result {
+            font-size: 2rem;
+            margin-top: 50px;
+        }
+    </style> 
+</head>
+<body>
+    <!-- Start Page -->
+    <div id="startPage">
+        <h1>国民の皆さまようこそ！</h1>
+        <button id="startButton">ゲームスタート</button>
+    </div>
+
+    <!-- Game Page -->
+    <div id="gamePage">
+        <h2>祈ってください！</h2>
+        <!-- <div class="bubble" id="bubble">タップして！</div> -->
+        <img src="j561_4_5.png" alt="キャラクター" id="character">
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // ページ要素を取得
+        const startButton = document.getElementById('startButton');
+        const startPage = document.getElementById('startPage');
+        const gamePage = document.getElementById('gamePage');
+        const character = document.getElementById('character');
+        const result = document.getElementById('result');
+        const bubble = document.getElementById('bubble');
+
+        // スタートボタンを押すとゲームページを表示
+        startButton.addEventListener('click', function() {
+            startPage.style.display = 'none';
+            gamePage.style.display = 'block';
+            bubble.style.display = 'block';
+        });
+
+        character.addEventListener('click', function() {
+            result.textContent = ""; 
+            character.src = "j561_4_7.png"; 
+
+            setTimeout(function() {
+            const randomNum = Math.random();
+            if (randomNum < 0.3) {
+                result.textContent = "飲むにだ！";
+                character.src = "j561_4_8.png";
+            } else {
+                result.textContent = "飲まない";
+                character.src = "j561_4_9.png"
+            }
+        }, 1000);
+        });
+    </script>
+</body>
+</html>
